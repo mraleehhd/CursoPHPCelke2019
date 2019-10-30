@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Site</title>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-danger">
+                <div class="container">
+                    <a class="navbar-brand" href="index.html">Alexander Hartmann</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item menu">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item menu">
+                                <a class="nav-link" href="sobreaempresa.html">Sobre a empresa</a>
+                            </li>
+                            <li class="nav-item menu">
+                                <a class="nav-link" href="blog.html">Blog</a>
+                            </li>
+                            <li class="nav-item menu">
+                                <a class="nav-link" href="contato.html">Contato</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main role="main">
+
+
+
+            <div class="jumbotron contato">
+                <div class="container">
+                    <h2 class="display-4 text-center" style="margin-bottom: 40px;">Contato</h2>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" placeholder="Nome completo">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>E-mail</label>
+                                <input type="email" class="form-control" placeholder="Seu melhor e-mail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Assunto</label>
+                            <input type="text" class="form-control" placeholder="Assunto da mensagem">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress2">Mensagem</label>
+                            <textarea class="form-control" rows="6"></textarea>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-danger">Enviar</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="footer bg-danger text">
+            <div class="container text-center">
+                © copyright alexanderhartmann.com.br
+            </div>
+        </footer>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="js/scrollreveal.js"></script>
+        <script src="js/all.min.js"></script>
+
+        <script>
+            window.sr = ScrollReveal({reset: true});
+            sr.reveal('.sobre-text', {
+                duration: 1000,
+                origin: 'left',
+                distance: '20px',
+            });
+            sr.reveal('.sobre-img', {
+                duration: 1000,
+                origin: 'bottom',
+                distance: '20px',
+            });
+        </script>
+    </body>
+</html>

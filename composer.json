@@ -1,0 +1,17 @@
+{
+    "name": "Alexander",
+    "description": "Projeto Site PHP OO",
+    "authors": [
+        {
+            "name": "Alexander Hartmann",
+            "email": "mraleehhd@gmail.com"
+        }
+    ],
+    "autoload":{
+        "psr-4":{
+            "Core\\" : "core",
+            "Sts\\" : "app/sts"
+        }
+    },
+    "require":{}
+}
