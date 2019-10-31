@@ -16,7 +16,8 @@ class Blog {
 
     //put your code here
     public function index() {
-        echo 'Página de Blog <br>';
+
+        echo "Página blog";
     }
 
 }
