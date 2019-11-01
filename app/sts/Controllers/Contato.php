@@ -15,13 +15,26 @@ endif;
 class Contato {
 
     private $Dados;
+
     //put your code here
     public function index() {
-        $this->Dados = ['nome' => 'Teste', 'email' => 'mraleehhd@gmail.com', 'assunto' => 'teste1', 'mensagem' => 'msgTeste 1', 'created' => date('Y-m-d H:i:s')];
+        $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+//        echo "<br><br><br>";
 //        print_r($this->Dados);
-        $cadContato = new \Sts\Models\StsContato();
-        $cadContato->cadContato($this->Dados);
-        
+
+        if (!empty($this->Dados['CadMsgCont'])):
+            unset($this->Dados['CadMsgCont']);
+            $cadContato = new \Sts\Models\StsContato();
+            $cadContato->cadContato($this->Dados);
+            if ($cadContato->getResult()):
+                $this->Dados['form'] = null;
+            else:
+                $this->Dados['form'] = $this->Dados;
+            endif;
+
+        endif;
+        $carregarView = new \Core\ConfigView('sts/Views/contato/contato', $this->Dados);
+        $carregarView->renderizar();
     }
 
 }

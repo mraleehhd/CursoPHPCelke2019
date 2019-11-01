@@ -22,6 +22,10 @@ class StsCreate extends StsConn {
     private $Query;
     private $Conn;
 
+    function getResultado() {
+        return $this->Resultado;
+    }
+
     public function exeCreate($Tabela, array $Dados) {
         $this->Tabela = (string) $Tabela;
         $this->Dados = $Dados;

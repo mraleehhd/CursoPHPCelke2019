@@ -14,10 +14,16 @@ endif;
  */
 class Blog {
 
+    private $Dados;
+
     //put your code here
     public function index() {
 
-        echo "Página blog";
+        $listar_art = new \Sts\Models\StsBlog();
+        $this->Dados['artigos'] = $listar_art->ListarArtigos();
+             
+        $carregarView = new \Core\ConfigView('sts/Views/blog/blog', $this->Dados);
+        $carregarView->renderizar();
     }
 
 }
