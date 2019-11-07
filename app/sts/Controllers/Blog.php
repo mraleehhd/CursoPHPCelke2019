@@ -25,6 +25,13 @@ class Blog {
 //        echo "<br><br><br>" . $this->PageId;
         $listar_art = new \Sts\Models\StsBlog();
         $this->Dados['artigos'] = $listar_art->ListarArtigos($this->PageId);
+        $this->Dados['paginacao'] = $listar_art->getResultadoPg();
+        
+        $listarArtRecente = new \Sts\Models\StsArtRecentes();
+        $this->Dados['artRecente'] = $listarArtRecente->listarArtRecente();
+        
+        $listarArtDestaque = new \Sts\Models\StsArtDestaque();
+        $this->Dados['artDestaque'] = $listarArtDestaque->ListarArtDestaque();
 
         $carregarView = new \Core\ConfigView('sts/Views/blog/blog', $this->Dados);
         $carregarView->renderizar();

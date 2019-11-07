@@ -13,39 +13,32 @@ endif;
             <div class="row">
                 <div class="col-md-8 blog-main">
                     <?php
+                    if (empty($this->Dados['artigos'])):
+                        echo "<div class='alert alert-danger'>Erro: Nenhum artigo cadastrado!</div>";
+                    endif;
+
                     foreach ($this->Dados['artigos'] as $artigo) {
                         extract($artigo);
                         ?>
 
                         <div class="row featurette">
                             <div class="col-md-7 order-md-2 blog-text anim_bottom">
-                                <a href="<?= URL . 'artigo/' . $slug;?>"><h2 class="featurette-heading text-danger"><?= $titulo;?></h2></a>
-                                <p class="lead"><?= $descricao;?><a href="<?= URL . 'artigo/' . $slug;?>" class="text-danger">Continuar lendo</a></p>
+                                <a href="<?= URL . 'artigo/' . $slug; ?>"><h2 class="featurette-heading text-danger"><?= $titulo; ?></h2></a>
+                                <p class="lead"><?= $descricao; ?><a href="<?= URL . 'artigo/' . $slug; ?>" class="text-danger">Continuar lendo</a></p>
                             </div>
                             <div class="col-md-5 order-md-1 anim_left">
-                                <a href="<?= URL . 'artigo/' . $slug;?>"><img class="featurette-image img-fluid mx-auto" src="<?= URL . 'assets/imgs/artigo/' . $id . '/' . $imagem;?>" alt="<?= $titulo;?>"></a>
+                                <a href="<?= URL . 'artigo/' . $slug; ?>"><img class="featurette-image img-fluid mx-auto" src="<?= URL . 'assets/imgs/artigo/' . $id . '/' . $imagem; ?>" alt="<?= $titulo; ?>"></a>
                             </div>
                         </div>
                         <hr class="featurette-divider">
 
-                    <?php }
+                        <?php
+                    }
+
+                    echo $this->Dados['paginacao'];
                     ?>
 
-                    <nav aria-label="...">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+
                 </div>
                 <aside class="col-md-4 blog-sidebar">
                     <div class="p-3 mb-3 bg-light rounded">
@@ -56,24 +49,24 @@ endif;
                     <div class="p-3">
                         <h4 class="font-italic">Recentes</h4>
                         <ol class="list-unstyled mb-0">
-                            <li><a href="#">Artigo 1</a></li>
-                            <li><a href="#">Artigo 2</a></li>
-                            <li><a href="#">Artigo 3</a></li>
-                            <li><a href="#">Artigo 4</a></li>
-                            <li><a href="#">Artigo 5</a></li>
-                            <li><a href="#">Artigo 6</a></li>
-                            <li><a href="#">Artigo 7</a></li>
-                            <li><a href="#">Artigo 8</a></li>
-                            <li><a href="#">Artigo 9</a></li>
+                            <?php
+                            foreach ($this->Dados['artRecente'] as $artigoRec) {
+                                extract($artigoRec);
+                                echo "<li><a href='" . URL . "artigo/$slug'>{$titulo}</a></li>";
+                            }
+                            ?>
                         </ol>
                     </div>
 
                     <div class="p-3">
-                        <h4 class="font-italic">Destaque</h4>
+                        <h4 class="font-italic">Destaques</h4>
                         <ol class="list-unstyled">
-                            <li><a href="#">Artigo 7</a></li>
-                            <li><a href="#">Artigo 3</a></li>
-                            <li><a href="#">Artigo 8</a></li>
+                            <?php
+                            foreach ($this->Dados['artDestaque'] as $artigoDes) {
+                                extract($artigoDes);
+                                echo "<li><a href='" . URL . "artigo/$slug'>{$titulo}</a></li>";
+                            }
+                            ?>
                         </ol>
                     </div>
                 </aside><!-- /.blog-sidebar -->

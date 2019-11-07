@@ -3,9 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/site/app/sts/Models/helper/StsPager.php</file>
+            <file>file:/D:/xampp/htdocs/site/app/sts/Models/StsArtRecentes.php</file>
             <file>file:/D:/xampp/htdocs/site/app/sts/Controllers/Blog.php</file>
-            <file>file:/D:/xampp/htdocs/site/app/sts/Models/StsBlog.php</file>
             <file>file:/D:/xampp/htdocs/site/app/sts/Views/blog/blog.php</file>
         </group>
     </open-files>
