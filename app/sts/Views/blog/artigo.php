@@ -1,42 +1,53 @@
+
 <?php
 if (!defined("URL")):
     header("Location: /");
     exit();
 endif;
-?><main role="main">
-
+?>
+<main role="main">
 
 
     <div class="jumbotron blog">
         <div class="container">
-            <h2 class="display-4 text-center" style="margin-bottom: 40px;">Blog</h2>
             <div class="row">
                 <div class="col-md-8 blog-main">
+
                     <?php
-                    if (empty($this->Dados['artigos'])):
-                        echo "<div class='alert alert-danger'>Erro: Nenhum artigo cadastrado!</div>";
-                    endif;
-
-                    foreach ($this->Dados['artigos'] as $artigo) {
-                        extract($artigo);
+                    if (!empty($this->Dados['sts_artigos'][0])):
+                        extract($this->Dados['sts_artigos'][0])
                         ?>
-
-                        <div class="row featurette">
-                            <div class="col-md-7 order-md-2 blog-text anim_bottom">
-                                <a href="<?= URL . 'artigo/' . $slug; ?>"><h2 class="featurette-heading text-danger"><?= $titulo; ?></h2></a>
-                                <p class="lead"><?= $descricao; ?><a href="<?= URL . 'artigo/' . $slug; ?>" class="text-danger">Continuar lendo</a></p>
-                            </div>
-                            <div class="col-md-5 order-md-1 anim_left">
-                                <a href="<?= URL . 'artigo/' . $slug; ?>"><img class="featurette-image img-fluid mx-auto" src="<?= URL . 'assets/imgs/artigo/' . $id . '/' . $imagem; ?>" alt="<?= $titulo; ?>"></a>
-                            </div>
+                        <div class="blog-post">
+                            <h2 class="blog-post-title"><?= $titulo; ?></h2>
+                            <img src="<?= URL . 'assets/imgs/artigo/' . $id . '/' . $imagem; ?>" class="img-fluid" alt="Responsive image" style="margin-bottom: 20px">
+                            <?= $conteudo; ?>
                         </div>
-                        <hr class="featurette-divider">
 
+                        <nav class="blog-pagination">
+                            <?php
+                            if (!empty($this->Dados['artAnterior'][0])):
+                                extract($this->Dados['artAnterior'][0]);
+                                echo "<a class='btn btn-outline-primary' href='" . URL . "artigo/$slug'>Anterior</a>";
+                            else:
+                                echo "<a class='btn btn-outline-secondary disabled' href='#'>Anterior</a>";
+                            endif;
+                            if (!empty($this->Dados['artProximo'][0])):
+                                extract($this->Dados['artProximo'][0]);
+                                echo "<a class='btn btn-outline-primary' href='" . URL . "artigo/$slug'>Próximo</a>";
+                            else:
+                                echo "<a class='btn btn-outline-secondary disabled' href='#'>Próximo</a>";
+                            endif;
+                            ?>
+
+                        </nav>
                         <?php
-                    }
+                    else:
 
-                    echo $this->Dados['paginacao'];
+                        echo "<div class='alert alert-danger'>Erro: Nenhum artigo cadastrado!</div>";
+
+                    endif;
                     ?>
+
 
 
                 </div>

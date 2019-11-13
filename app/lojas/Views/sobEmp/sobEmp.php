@@ -10,7 +10,7 @@ endif;
 
     <div class="jumbotron sobre-empresa">
         <div class="container">
-            <h2 class="display-4 text-center" style="margin-bottom: 40px;">Sobre a empresa</h2>
+            <h2 class="display-4 text-center" style="margin-bottom: 40px;">Sobre o desenvolvedor</h2>
 
             <?php
             $cont_sob_emp = 1;

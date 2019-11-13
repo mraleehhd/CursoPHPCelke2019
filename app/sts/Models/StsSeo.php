@@ -1,24 +1,38 @@
 <?php
 
-namespace Core;
+namespace Sts\Models;
+
+if (!defined("URL")):
+    header("Location: /");
+    exit();
+endif;
 
 /**
- * Description of ConfigController
+ * Description of StsSeo
  *
  * @author Hart
  */
-class ConfigController {
+class StsSeo {
 
+    //put your code here
+    private $Result;
+    private $UrlController;
     private $Url;
     private $UrlConjunto;
-    private $UrlController;
     private $UrlParam;
     private static $Format;
-    private $Classe;
-    private $Paginas;
 
-    public function __construct() {
+    public function listarSeo() {
+        $this->monstarUrl();
+        echo $this->UrlController;
+        $listar = new \Sts\Models\helper\StsRead();
+        $listar->fullRead("SELECT pg.endereco, pg.titulo_site, pg.keywords, pg.description, pg.author, pg.imagem, robo.tipo tipo_rob FROM sts_paginas pg INNER JOIN sts_robots robo ON robo.id=pg.sts_robot_id WHERE pg.controller =:controller ORDER BY pg.id ASC LIMIT :limit", "controller={$this->UrlController}&limit=1");
+        $this->Result = $listar->getResult();
+        
+        return $this->Result;
+    }
 
+    private function monstarUrl() {
         if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))):
 
             $this->Url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
@@ -66,51 +80,8 @@ class ConfigController {
     }
 
     private function slugController($slugController) {
-//        $UrlController = strtolower($slugController);
-//        $UrlController = explode("-", $UrlController);
-//        $UrlController = implode(" ", $UrlController);
-//        $UrlController = ucwords($UrlController);
-//        $UrlController = str_replace(" ", "", $UrlController);
         $UrlController = str_replace(" ", "", ucwords(implode(" ", explode("-", strtolower($slugController)))));
         return $UrlController;
-    }
-
-    public function carregar() {
-
-//        echo "<br><br><br>";
-
-        $listarPg = new \Sts\Models\StsPaginas();
-        $this->Paginas = $listarPg->listarPaginas($this->UrlController);
-
-        if ($this->Paginas):
-            extract($this->Paginas[0]);
-            $this->Classe = "\\App\\{$tipo_tpg}\\Controllers\\" . $this->UrlController;
-            if (class_exists($this->Classe)):
-                $this->carregarMetodo();
-            else:
-                $this->UrlController = $this->slugController(CONTROLLER);
-                $this->carregar();
-            endif;
-        else:
-            $this->UrlController = $this->slugController(CONTROLLER);
-            $this->carregar();
-        endif;
-    }
-
-    private function carregarMetodo() {
-        $classeCarregar = new $this->Classe;
-
-        if (method_exists($classeCarregar, "index")):
-            if ($this->UrlParam !== null):
-                $classeCarregar->index($this->UrlParam);
-            else:
-
-                $classeCarregar->index();
-            endif;
-        else:
-            $this->UrlController = $this->slugController(CONTROLLER);
-            $this->carregar();
-        endif;
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sts\Controllers;
+namespace App\Sts\Controllers;
 
 if (!defined("URL")):
     header("Location: /");
@@ -18,6 +18,8 @@ class Contato {
 
     //put your code here
     public function index() {
+
+
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 //        echo "<br><br><br>";
 //        print_r($this->Dados);
@@ -33,6 +35,13 @@ class Contato {
             endif;
 
         endif;
+
+        $listarMenu = new \Sts\Models\StsMenu();
+        $this->Dados['menu'] = $listarMenu->listarMenu();
+
+        $listarSeo = new \Sts\Models\StsSeo();
+        $this->Dados['seo'] = $listarSeo->listarSeo();
+        
         $carregarView = new \Core\ConfigView('sts/Views/contato/contato', $this->Dados);
         $carregarView->renderizar();
     }
